@@ -134,6 +134,42 @@ def tobs():
 
     return jsonify(all_tobs_for_last_year)
 
+# @app.route("/api/v1.0/", defaults={"start": "2010-01-01"})
+# @app.route("/api/v1.0/<start>", defaults={"end": "2017-08-23"})
+@app.route("/api/v1.0/<start>")
+@app.route("/api/v1.0/<start>/<end>")
+def temperature_date(start, end=None):
+    
+#     Create our session (link) from Python to the DB
+    session = Session(engine)
+
+#     Find the most recent date in the data set.
+    most_recent_date = session.query(func.max(Measurement.date)).one()
+    most_recent_date = most_recent_date[0]
+    
+#     If start date is greater than most last date in data
+    if(start > most_recent_date):
+        return "Start Date is out of the range."
+    
+#     If end is is not given by user then assign last available date in data
+    if(end is None):
+           
+            end = most_recent_date
+    
+    if(start <= end):
+        temp_stats = session.query(func.min(Measurement.tobs),func.max(Measurement.tobs),func.avg(Measurement.tobs)).\
+                filter(Measurement.date >= start).\
+                filter(Measurement.date <= end).all()
+
+        temp_dict = []
+
+        temp_dict.append(f'Minimum Temperature: {temp_stats[0][0]}')
+        temp_dict.append(f'Maximum Temperature: {temp_stats[0][1]}')
+        temp_dict.append(f'Average Temperature: {round(temp_stats[0][2],1)}')
+
+        return jsonify(temp_dict)
+    else:
+        return "Start Date should not be greater than End Date"
 
 if __name__ == '__main__':
     app.run(debug=True)
