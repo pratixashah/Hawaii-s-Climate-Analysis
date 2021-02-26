@@ -70,11 +70,7 @@ def precipitation():
     
     all_dates_prcp=[]
     date_dict = {date : prcp for date, prcp in results}
-#     for date,prcp in results:
-#         date_dict = {}
-#         date_dict['date']=date
-#         date_dict['prcp']=prcp
-#         all_dates_prcp.append(date_dict)
+
     return jsonify(date_dict)
 
 
@@ -103,8 +99,8 @@ def stations():
 
 @app.route("/api/v1.0/tobs")
 def tobs():
-   
-#     Create our session (link) from Python to the DB
+    
+#    Create our session (link) from Python to the DB 
     session = Session(engine)
 
 #     Find the most recent date in the data set.
@@ -139,8 +135,7 @@ def tobs():
 
     return jsonify(all_tobs_for_last_year)
 
-# @app.route("/api/v1.0/", defaults={"start": "2010-01-01"})
-# @app.route("/api/v1.0/<start>", defaults={"end": "2017-08-23"})
+
 @app.route("/api/v1.0/<start>")
 @app.route("/api/v1.0/<start>/<end>")
 def temperature_date(start=None, end=None):
