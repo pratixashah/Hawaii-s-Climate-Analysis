@@ -46,8 +46,7 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start><br/>"
-        f"/api/v1.0/<start>/<end>"
+        f"/api/v1.0/start/end"
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -59,19 +58,24 @@ def precipitation():
     """Return a list of all dates and precipitation"""
     # Query all dates and precipitation
     
-    results = session.query(Measurement.date, Measurement.prcp).order_by(Measurement.date).all()
+    most_recent_date = '2017-08-23'
+    last_year_date = (datetime.strptime(most_recent_date, "%Y-%m-%d") + relativedelta(years=-1)).date()
+    
+    results = session.query(Measurement.date, Measurement.prcp).\
+                filter(Measurement.date >= last_year_date).\
+                filter(Measurement.prcp != None).\
+                order_by(Measurement.date).all()
 
     session.close()
     
     all_dates_prcp=[]
-    
-    for date,prcp in results:
-        date_dict = {}
-        date_dict['date']=date
-        date_dict['prcp']=prcp
-        all_dates_prcp.append(date_dict)
-
-    return jsonify(all_dates_prcp)
+    date_dict = {date : prcp for date, prcp in results}
+#     for date,prcp in results:
+#         date_dict = {}
+#         date_dict['date']=date
+#         date_dict['prcp']=prcp
+#         all_dates_prcp.append(date_dict)
+    return jsonify(date_dict)
 
 
 @app.route("/api/v1.0/stations")
@@ -88,6 +92,7 @@ def stations():
     
     all_stations=[]
     
+#     station = list(np.ravel(results))
     for name, station in results:
         station_dict = {}
         station_dict['name']=name
@@ -118,9 +123,9 @@ def tobs():
     most_active_station_id = station_list[0][0]
     
     temp_observation_data = session.query(Measurement.date, Measurement.tobs).\
-    filter(Measurement.station == most_active_station_id).order_by(Measurement.date).\
+    filter(Measurement.station == most_active_station_id).\
     filter(Measurement.date <= most_recent_date).\
-    filter(Measurement.date >= last_year_date)
+    filter(Measurement.date >= last_year_date).order_by(Measurement.date)
 
     session.close()
     
@@ -138,7 +143,7 @@ def tobs():
 # @app.route("/api/v1.0/<start>", defaults={"end": "2017-08-23"})
 @app.route("/api/v1.0/<start>")
 @app.route("/api/v1.0/<start>/<end>")
-def temperature_date(start, end=None):
+def temperature_date(start=None, end=None):
     
 #     Create our session (link) from Python to the DB
     session = Session(engine)
