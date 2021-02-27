@@ -6,7 +6,7 @@ This repo contains data exploration and analysis on Hawaii's climate. It analyze
 - Resources dir contains all data files.
 - It includes hawaii.sqlite file and csvs
 
-# Climate Analysis(climate_starter.ipynb)
+## Climate Analysis(climate_starter.ipynb)
 - It includes reflection of database using hawaii.sqlite file.
 - Calculates the total number of stations in the dataset
 - Finds the most active stations (i.e. which stations have the most rows?).
@@ -17,7 +17,7 @@ This repo contains data exploration and analysis on Hawaii's climate. It analyze
     - Filter by the station with the highest number of observations.
     - Query the last 12 months of temperature observation data for this station.
 
-# Flask API(app.py)
+## Flask API(app.py)
 Designed Flask API based on queries developed for climate anylsis above. Following routes are created:
 - /
   - Home page and provides all routes that are available.
@@ -38,13 +38,13 @@ Designed Flask API based on queries developed for climate anylsis above. Followi
   - When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
   - When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
 
-# Temperature Analysis(temp_analysis_bonus_1_starter.ipynb)
+## Temperature Analysis(temp_analysis_bonus_1_starter.ipynb)
 - Identifys the average temperature in June at all stations across all available years in the dataset. Same for December temperature.
 - Used the t-test to determine whether the difference in the means, if any, is statistically significant.
 - Used the calc_temps function to calculate the min, avg, and max temperatures for trip using the matching dates from a previous year.
 - Ploted the min, avg, and max temperature from your previous query as a bar chart.
 
-# Daily Rainfall Average(temp_analysis_bonus_2_starter.ipynb)
+## Daily Rainfall Average(temp_analysis_bonus_2_starter.ipynb)
 - Calculates the rainfall per weather station using the previous year’s matching dates.
   - Sorted this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation.
 - Calculates the daily normals. Normals are the averages for the min, avg, and max temperatures.
