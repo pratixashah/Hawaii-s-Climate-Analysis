@@ -6,7 +6,7 @@ This repo contains data exploration and analysis on Hawaii's climate. It analyze
 - Resources dir contains all data files.
 - It includes hawaii.sqlite file and csvs
 
-# Climate Analysis
+# Climate Analysis(climate_starter.ipynb)
 - It includes reflection of database using hawaii.sqlite file.
 - Calculate the total number of stations in the dataset
 - Find the most active stations (i.e. which stations have the most rows?).
@@ -17,7 +17,7 @@ This repo contains data exploration and analysis on Hawaii's climate. It analyze
     - Filter by the station with the highest number of observations.
     - Query the last 12 months of temperature observation data for this station.
 
-# Flask API
+# Flask API(app.py)
 Designed Flask API based on queries developed for climate anylsis above. Following routes are created:
 - /
   - Home page and provides all routes that are available.
@@ -38,17 +38,17 @@ Designed Flask API based on queries developed for climate anylsis above. Followi
   - When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
   - When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
 
-# Temperature Analysis
+# Temperature Analysis(temp_analysis_bonus_1_starter.ipynb)
 - Identify the average temperature in June at all stations across all available years in the dataset. Same for December temperature.
 - Use the t-test to determine whether the difference in the means, if any, is statistically significant.
-- Use the calc_temps function to calculate the min, avg, and max temperatures for trip using the matching dates from a previous year (i.e., use “2017-08-01”).
+- Use the calc_temps function to calculate the min, avg, and max temperatures for trip using the matching dates from a previous year.
 - Plot the min, avg, and max temperature from your previous query as a bar chart.
 
-# Daily Rainfall Average
+# Daily Rainfall Average(temp_analysis_bonus_2_starter.ipynb)
 - Calculate the rainfall per weather station using the previous year’s matching dates.
   - Sort this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation.
 - Calculate the daily normals. Normals are the averages for the min, avg, and max temperatures.
 - Load the list of daily normals into a Pandas DataFrame.
-- Use Pandas to plot an area plot (stacked=False) for the daily normals.
+- Use Pandas to plot an area plot for the daily normals.
 
 
