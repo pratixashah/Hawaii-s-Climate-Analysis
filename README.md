@@ -8,12 +8,12 @@ This repo contains data exploration and analysis on Hawaii's climate. It analyze
 
 # Climate Analysis(climate_starter.ipynb)
 - It includes reflection of database using hawaii.sqlite file.
-- Calculate the total number of stations in the dataset
-- Find the most active stations (i.e. which stations have the most rows?).
+- Calculates the total number of stations in the dataset
+- Finds the most active stations (i.e. which stations have the most rows?).
     - List the stations and observation counts in descending order.
     - Which station id has the highest number of observations?
     - Using the most active station id, calculate the lowest, highest, and average temperature.
-- Retrieve the last 12 months of temperature observation data (TOBS).
+- Retrieves the last 12 months of temperature observation data (TOBS).
     - Filter by the station with the highest number of observations.
     - Query the last 12 months of temperature observation data for this station.
 
@@ -39,16 +39,16 @@ Designed Flask API based on queries developed for climate anylsis above. Followi
   - When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
 
 # Temperature Analysis(temp_analysis_bonus_1_starter.ipynb)
-- Identify the average temperature in June at all stations across all available years in the dataset. Same for December temperature.
-- Use the t-test to determine whether the difference in the means, if any, is statistically significant.
-- Use the calc_temps function to calculate the min, avg, and max temperatures for trip using the matching dates from a previous year.
-- Plot the min, avg, and max temperature from your previous query as a bar chart.
+- Identifys the average temperature in June at all stations across all available years in the dataset. Same for December temperature.
+- Used the t-test to determine whether the difference in the means, if any, is statistically significant.
+- Used the calc_temps function to calculate the min, avg, and max temperatures for trip using the matching dates from a previous year.
+- Ploted the min, avg, and max temperature from your previous query as a bar chart.
 
 # Daily Rainfall Average(temp_analysis_bonus_2_starter.ipynb)
-- Calculate the rainfall per weather station using the previous year’s matching dates.
-  - Sort this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation.
-- Calculate the daily normals. Normals are the averages for the min, avg, and max temperatures.
-- Load the list of daily normals into a Pandas DataFrame.
-- Use Pandas to plot an area plot for the daily normals.
+- Calculates the rainfall per weather station using the previous year’s matching dates.
+  - Sorted this in descending order by precipitation amount and list the station, name, latitude, longitude, and elevation.
+- Calculates the daily normals. Normals are the averages for the min, avg, and max temperatures.
+- Loaded the list of daily normals into a Pandas DataFrame.
+- Used Pandas to plot an area plot for the daily normals.
 
 
